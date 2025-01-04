@@ -1,0 +1,11 @@
+# robots.txt for Eusebiu Șoica's Portfolio
+
+User-agent: *
+Disallow: /admin/
+Disallow: /login/
+
+# Allow search engines to index all other pages
+Allow: /
+
+# Sitemap URL for search engines to find the structure of the website
+Sitemap: https://www.eusebiusoica.com/sitemap.xml
