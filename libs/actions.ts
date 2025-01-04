@@ -1,3 +1,4 @@
+"use client"
 import emailjs from "emailjs-com";
 
 export async function sendEmail(name: string, email: string, message: string, recaptchaToken: string) {
