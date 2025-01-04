@@ -14,10 +14,8 @@ export async function sendEmail(name: string, email: string, message: string, re
 
   try {
     const response = await emailjs.send(serviceID, templateID, params, publicKey);
-    console.log("Email sent successfully!", response.status, response.text);
     return response;
   } catch (error) {
-    console.error("Failed to send email:", error);
     throw new Error("Email sending failed");
   }
 }
