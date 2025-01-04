@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import AngularLogo from "@/assets/angular-icon-1.svg"
 import HTML5 from "@/assets/html-1.svg"
 import CSS3 from "@/assets/css-3.svg"

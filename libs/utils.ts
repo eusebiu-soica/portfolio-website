@@ -1,4 +1,4 @@
-"use client";
+'use client';
 export const scrollToSection = (index: number) => {
   const sections = document.querySelectorAll(".snap-section");
   const offset =

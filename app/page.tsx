@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import About from "@/ui/About";
 import Contact from "@/ui/Contact";
