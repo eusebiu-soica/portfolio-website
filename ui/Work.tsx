@@ -43,8 +43,8 @@ const projects = [
     {
         title: 'Portfolio Website',
         description: 'Personal portfolio website.',
-        link: '/',
-        git: '#',
+        link: 'https://eusebiusoica.com/',
+        git: 'https://github.com/eusebiu-soica/portfolio-website',
         image: '/portfolio-image.png',
         technologies: ['Next.js', 'React', 'NextUI', 'Tailwind CSS'],
         soon: false
