@@ -20,6 +20,7 @@ import NodeJS from "@/assets/nodejs-icon.svg";
 import Typescript from "@/assets/typescript.svg";
 import Monaco from "@/assets/monaco.svg";
 import clsx from 'clsx';
+import { useEffect, useState } from 'react';
 
 const techLogos: Record<string, string> = {
     'Next.js': NextJS,
@@ -101,6 +102,15 @@ const projects = [
 ];
 
 export default function Projects() {
+
+    const [isMobile, setIsMobile] = useState(false);
+    
+        useEffect(() => {
+            const handleResize = () => setIsMobile(window.innerWidth <= 768);
+            handleResize();
+            window.addEventListener("resize", handleResize);
+            return () => window.removeEventListener("resize", handleResize);
+        }, []);
     return (
         <section data-section='4' className="snap-section overflow-x-hidden min-h-screen flex flex-col gap-16 relative w-full items-start px-8 lg:px-28 py-24 bg-background">
             <div className="z-10">
@@ -116,10 +126,10 @@ export default function Projects() {
                     <motion.div
                         key={index}
                         className="relative py-4 bg-[#0A1E2E] rounded-2xl shadow-xl w-full group"
-                        initial={{ opacity: 0, x: 50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
+                        initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+                        whileInView={isMobile ?{ opacity: 1, x: 0 }:{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        transition={{ delay: 0.2 * index, type: 'spring', stiffness: 80, duration: 0.3 }}
+                        transition={isMobile ?{delay: 0, duration: 0} :{ delay: 0.2 * index, type: 'spring', stiffness: 80, duration: 0.3 }}
                         whileHover={{ scale: 1.01, transition: { duration: 0.1, type: 'spring', stiffness: 80 } }}
                     >
                         <div className="relative pt-0 pb-0 pl-4 pr-0 flex items-end justify-end">

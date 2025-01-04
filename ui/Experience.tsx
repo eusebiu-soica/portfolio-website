@@ -1,13 +1,35 @@
 "use client"
 import { Card, CardBody, CardHeader, Chip } from "@nextui-org/react";
 import { motion, useInView } from 'framer-motion';
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function Experience() {
+    const [isDesktop, setIsDesktop] = useState(true);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsDesktop(window.innerWidth >= 768);
+        };
+
+        handleResize();
+        window.addEventListener("resize", handleResize);
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
     const cardVariants = {
-        hidden: { opacity: 0, y: 100 },
-        visible: (i: any) => ({ opacity: 1, y: 0, transition: { type: "spring", delay: i * 0.2, duration: 0.8 } })
-    }
+        hidden: { opacity: isDesktop ? 0 : 1, y: isDesktop ? 100 : 0 },
+        visible: (i: any) => ({
+            opacity: 1,
+            y: 0,
+            transition: {
+                type: "spring",
+                delay: isDesktop ? i * 0.2 : 0,
+                duration: isDesktop ? 0.8 : 0,
+            },
+        }),
+    };
 
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true })
@@ -66,7 +88,7 @@ export default function Experience() {
                             <ul className="list-disc ml-3.5 lg:ml-6 text-base font-normal mt-2 lg:mt-0">
                                 <li>Built a fully responsive website based on Figma designs, ensuring a pixel-perfect implementation.</li>
                                 <li>Contributed to increasing the company's online visibility through SEO and strategic web design.</li>
-                                <li className="my-1">Tools: {['HTML5', 'CSS3', 'Bootstrap', 'Figma'].map((item) => { return <Chip className="m-1 text-[#061622] bg-[#0098d5]" size="sm" key={item} variant="flat">{item}</Chip> })}</li>
+                                <li className="my-1">Tools: {['HTML5', 'CSS3', 'Bootstrap', 'Vanilla.js', 'Figma'].map((item) => { return <Chip className="m-1 text-[#061622] bg-[#0098d5]" size="sm" key={item} variant="flat">{item}</Chip> })}</li>
                             </ul>
                         </div>
                         <div>

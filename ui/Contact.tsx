@@ -114,6 +114,15 @@ export default function Contact() {
     setRecaptchaToken(token);
   };
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const inputClasses = {
     input: '!bg-transparent',
     innerWrapper: '!bg-transparent',
@@ -129,9 +138,11 @@ export default function Contact() {
   }
 
   const cardVariants = {
-    hidden: { y: 100 },
-    visible: { y: 0, transition: { type: "spring", duration: 0.6 } },
+    hidden: isMobile ? {y: 0} : { y: 100 },
+    visible: isMobile ?{y: 0, transition: {duration: 0, delay: 0}}: { y: 0, transition: { type: "spring", duration: 0.6 } },
   };
+
+
 
   return (
     <section

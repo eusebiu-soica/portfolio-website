@@ -3,23 +3,30 @@ import { Card, CardBody } from "@nextui-org/react";
 import SocialMedia from "./SocialMediaComponent";
 import { motion, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { Opacity } from "@tsparticles/engine";
 
 
-const animationVariants = (delay = 0) => ({
-    show: { opacity: 1, y: 0, transition: { type: "spring", delay: delay } },
-    hidden: { opacity: 0, y: 18 },
-});
 
 
 export default function Footer() {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true });
     const [year, setYear] = useState<any>(null)
-
+    const [isMobile, setIsMobile] = useState(false);
+    
     useEffect(() => {
         const y = new Date().getFullYear()
         setYear(y)
+        const handleResize = () => setIsMobile(window.innerWidth <= 768);
+        handleResize();
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
     }, [])
+    
+    const animationVariants = (delay = 0) => ({
+        show: isMobile? {opacity: 1, y:0, transition: {delay: 0, duration: 0}} : { opacity: 1, y: 0, transition: { type: "spring", delay: delay } },
+        hidden: isMobile? {opacity: 1, y:0} : { opacity: 0, y: 18 },
+    });
 
     return (
         <Card className="bg-[#0A1E2E] overflow-hidden px-4 py-3 md:px-24" radius="none">

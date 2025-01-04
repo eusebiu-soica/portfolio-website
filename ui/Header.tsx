@@ -9,8 +9,8 @@ import { scrollToSection } from "@/libs/utils";
 import { Menu, X } from "lucide-react";
 
 const animationVariants = {
-  hidden: { opacity: 0, y: 18 },
-  show: { opacity: 1, y: 0, transition: { type: 'spring', duration: 0.5 } },
+  hidden: { opacity: 1, y: 0 },
+  show: { opacity: 1, y: 0, transition: { type: 'spring', duration: 0 } },
 };
 
 const menuVariants = {
@@ -112,7 +112,6 @@ export default function Header() {
         transition: "all 0.3s ease",
       }}
       variants={animationVariants}
-      role="navigation"
     >
       <p className={clsx("font-extrabold text-2xl lg:text-3xl italic", [fontSans.className])}>
         <span onClick={() => { scrollToSection(0); }} className="cursor-pointer" role="link" aria-label="Home">
@@ -131,7 +130,6 @@ export default function Header() {
               activeSection === item.section && "text-primary"
             )}
             aria-label={`Go to ${item.label}`}
-            role="menuitem"
           >
             {item.label}
           </Button>
@@ -154,7 +152,6 @@ export default function Header() {
           variants={menuVariants}
           className="absolute top-0 -z-10 left-0 w-full h-screen bg-[#081B29] space-y-5 flex flex-col items-center justify-center"
           id="menu"
-          role="menu"
           aria-hidden={!menuOpen}
         >
           {menuItems.map((item, index) => (
@@ -166,7 +163,6 @@ export default function Header() {
                   activeSection === item.section && "text-primary"
                 )}
                 aria-label={`Go to ${item.label}`}
-                role="menuitem"
               >
                 {item.label}
               </Button>

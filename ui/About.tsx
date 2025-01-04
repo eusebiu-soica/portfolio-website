@@ -1,25 +1,38 @@
 "use client";
 
-import { motion, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { LottieRefCurrentProps } from 'lottie-react';
-import avatar from '@/assets/avatar.svg';
+import avatar from '@/assets/avatar.png';
 import backgroundAbout from '@/assets/background.json';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 
 const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
 export default function About() {
-
     const paragraph1 = "I'm a Frontend Developer with 3+ years of experience building responsive, accessible, and user-focused web applications. My work is driven by a deep passion for clean design, seamless functionality, and solving real-world problems with technology.";
     const paragraph2 = " I enjoy merging creativity with functionality to make technology accessible and impactful. The joy of solving complex problems and transforming them into seamless digital experiences keeps me motivated every day. I develop products that are easy to use and that make people's lives easier.";
 
     const lottieRef = useRef<LottieRefCurrentProps | null>(null);
+    const [enableAnimations, setEnableAnimations] = useState(true);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setEnableAnimations(window.innerWidth >= 768); 
+        };
+
+        handleResize();
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     useEffect(() => {
         if (lottieRef.current) {
-            lottieRef.current.setSpeed(0.4)
+            lottieRef.current.setSpeed(0.2);
         }
     }, []);
 
@@ -33,28 +46,28 @@ export default function About() {
                 <motion.h1
                     id="about-title"
                     className="text-3xl lg:text-6xl font-extrabold"
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={enableAnimations ? { opacity: 0, y: 20 } : { opacity: 0, y: 0 }}
                     viewport={{ once: true }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4, duration: 0.6, type: 'spring', stiffness: 80 }}
+                    whileInView={enableAnimations ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+                    transition={enableAnimations ? { delay: 0.4, duration: 0.6, type: 'spring', stiffness: 80 } : {delay: 0, duration: 0}}
                 >
                     Let's talk <span className="text-primary">about me</span>
                 </motion.h1>
 
                 <div className="flex flex-col gap-5 items-start text-lg lg:text-xl">
                     <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.6, duration: 0.4, type: 'spring', stiffness: 80, }}
+                        initial={enableAnimations ? { opacity: 0, y: 20 } : { opacity: 1, y: 0 }}
+                        whileInView={enableAnimations ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+                        transition={enableAnimations ? { delay: 0.6, duration: 0.4, type: 'spring', stiffness: 80 } : {delay: 0, duration: 0}}
                         viewport={{ once: true }}
                     >
                         {paragraph1}
                     </motion.p>
 
                     <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.8, duration: 0.4, type: 'spring', stiffness: 80, }}
+                        initial={enableAnimations ? { opacity: 0, y: 20 } : { opacity: 1, y: 0 }}
+                        whileInView={enableAnimations ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+                        transition={enableAnimations ? { delay: 0.8, duration: 0.4, type: 'spring', stiffness: 80 } :{delay: 0, duration: 0}}
                         viewport={{ once: true }}
                     >
                         {paragraph2}
@@ -64,9 +77,9 @@ export default function About() {
 
             <motion.div
                 className="flex flex-grow flex-1"
-                initial={{ opacity: 0, x: -100 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.2, duration: 0.4, type: 'spring', stiffness: 80 }}
+                initial={enableAnimations ? { opacity: 0, x: -100 } : { opacity: 1, x: 0 }}
+                whileInView={enableAnimations ? { opacity: 1, x: 0 } : { opacity: 1, x: 0 }}
+                transition={enableAnimations ? { delay: 0.2, duration: 0.4, type: 'spring', stiffness: 80 } : {delay: 0, duration: 0}}
                 viewport={{ once: true }}
             >
                 <Image
@@ -89,4 +102,3 @@ export default function About() {
         </section>
     );
 }
-
