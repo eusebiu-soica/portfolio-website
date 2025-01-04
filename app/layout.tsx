@@ -1,6 +1,7 @@
 import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
 import clsx from "clsx";
+import { Analytics } from '@vercel/analytics/next';
 
 import { Providers } from "./providers";
 
@@ -74,6 +75,7 @@ export default function RootLayout({
           <div className={clsx("relative flex flex-col h-dvh", [fontSans.className])}>
             <Header />
             {children}
+            <Analytics />
           </div>
         </Providers>
       </body>
