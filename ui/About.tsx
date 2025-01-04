@@ -2,10 +2,13 @@
 
 import { motion, useInView } from 'framer-motion';
 import Image from 'next/image';
-import Lottie, { LottieRefCurrentProps } from 'lottie-react';
+import { LottieRefCurrentProps } from 'lottie-react';
 import avatar from '@/assets/avatar.svg';
 import backgroundAbout from '@/assets/background.json';
 import { useEffect, useRef } from 'react';
+import dynamic from 'next/dynamic';
+
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
 export default function About() {
 

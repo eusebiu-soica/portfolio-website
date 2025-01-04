@@ -29,7 +29,10 @@ import Monaco from "@/assets/monaco.svg"
 import { motion } from "framer-motion";
 import clsx from "clsx";
 import Image from "next/image"
-import Lottie from "lottie-react"
+// import Lottie from "lottie-react"
+import dynamic from "next/dynamic";
+
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
 export default function Skills() {
     const skills = [

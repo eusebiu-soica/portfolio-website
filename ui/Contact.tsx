@@ -10,11 +10,13 @@ import {
 } from "@nextui-org/react";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import Lottie from "lottie-react";
 import globe from "@/assets/globe.json";
 import { Send } from "lucide-react";
 import { sendEmail } from "@/libs/actions";
 import ReCAPTCHA from "react-google-recaptcha";
+import dynamic from "next/dynamic";
+
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState<any>(null);
