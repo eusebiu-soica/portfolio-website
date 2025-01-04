@@ -1,4 +1,3 @@
-
 "use client";
 
 import {
@@ -15,6 +14,7 @@ import Lottie from "lottie-react";
 import globe from "@/assets/globe.json";
 import { Send } from "lucide-react";
 import { sendEmail } from "@/libs/actions";
+import ReCAPTCHA from "react-google-recaptcha";
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState<any>(null);
@@ -22,8 +22,9 @@ export default function Contact() {
   const [isClient, setIsClient] = useState(false);
   const [responseMessage, setResponseMessage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
   const formRef = useRef<HTMLFormElement | null>(null);
-
+  const recaptchaRef = useRef<ReCAPTCHA | null>(null);
 
   useEffect(() => {
     setIsClient(true);
@@ -76,15 +77,24 @@ export default function Contact() {
       return;
     }
 
+    if (!recaptchaToken) {
+      setErrors({ recaptcha: "Please complete the reCAPTCHA" });
+      setIsLoading(false);
+      return;
+    }
+
     setErrors({});
     setSubmitted(data);
 
     try {
-      const response = await sendEmail(data.name, data.email, data.message);
+      const response = await sendEmail(data.name, data.email, data.message, recaptchaToken);
       if (response.status == 200) {
         setResponseMessage("Email sent successfully!");
         if (formRef.current) {
           formRef.current.reset();
+        }
+        if (recaptchaRef.current) {
+          recaptchaRef.current.reset();
         }
       } else {
         setResponseMessage("Failed to send email");
@@ -94,9 +104,13 @@ export default function Contact() {
       setResponseMessage("Failed to send email");
     } finally {
       setIsLoading(false);
+      setRecaptchaToken(null);
     }
   };
 
+  const handleRecaptchaChange = (token: string | null) => {
+    setRecaptchaToken(token);
+  };
 
   const inputClasses = {
     input: '!bg-transparent',
@@ -143,7 +157,6 @@ export default function Contact() {
               validationErrors={errors}
               onSubmit={onSubmit}
               ref={formRef}
-
             >
               <div className="flex flex-col gap-4 w-full">
                 <Input
@@ -194,9 +207,19 @@ export default function Contact() {
                   errorMessage={errors.message}
                 />
 
+                <ReCAPTCHA
+                  ref={recaptchaRef}
+                  sitekey="your_site_key"
+                  onChange={handleRecaptchaChange}
+                  className="mb-4"
+                />
+                {errors.recaptcha && (
+                  <p className="text-red-500 text-sm">{errors.recaptcha}</p>
+                )}
+
                 <div className="flex mt-4 justify-end">
                   <Button
-                    className="font-medium w-full md:w-1/3 h-12 md:h-11 relative hover:bg-[#b2e6fb]"
+                    className="g-recaptcha font-medium w-full md:w-1/3 h-12 md:h-11 relative hover:bg-[#b2e6fb]"
                     radius="sm"
                     startContent={<Send size={16} />}
                     color="primary"
