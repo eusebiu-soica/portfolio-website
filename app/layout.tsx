@@ -64,6 +64,7 @@ export default function RootLayout({
         
         {/* Canonical Link */}
         <link rel="canonical" href="https://www.eusebiusoica.com" />
+
       </head>
       <body
         className={clsx(

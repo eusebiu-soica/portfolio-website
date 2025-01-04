@@ -209,7 +209,7 @@ export default function Contact() {
 
                 <ReCAPTCHA
                   ref={recaptchaRef}
-                  sitekey="your_site_key"
+                  sitekey="6LdHNK4qAAAAAJw7aSOWAH2vsyQwd1rCpGuWZRcx"
                   onChange={handleRecaptchaChange}
                   className="mb-4"
                 />
