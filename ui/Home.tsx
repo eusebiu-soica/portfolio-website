@@ -1,4 +1,4 @@
-'use client'
+"use client"
 import HelloComponent from "@/ui/HelloComponent";
 import ParticlesBackground from "@/ui/Particles";
 import SocialMedia from "@/ui/SocialMediaComponent";

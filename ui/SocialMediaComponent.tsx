@@ -1,4 +1,4 @@
-'use client'
+"use client"
 import { Button, Tooltip } from "@nextui-org/react";
 import { Facebook, Github, Twitter, Linkedin, Mail, Phone } from "lucide-react";
 import { motion, useInView } from "framer-motion";

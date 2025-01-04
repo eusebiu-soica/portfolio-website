@@ -1,4 +1,4 @@
-'use client'
+"use client"
 import { Card, CardBody } from "@nextui-org/react";
 import SocialMedia from "./SocialMediaComponent";
 import { motion, useInView } from "framer-motion";
@@ -28,7 +28,7 @@ export default function Footer() {
                     initial="hidden"
                     animate={isInView ? "show" : ""}
                     variants={animationVariants(0.3)} className="flex justify-end font-normal mt-7 md:mt-0">© {year} by Eusebiu Șoica. All rights reserved.
-                 
+
                 </motion.div>
                 <div className="flex flex-1 justify-end">
                     <SocialMedia footer />

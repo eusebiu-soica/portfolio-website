@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { fontSans } from "@/config/fonts";
 import { Button } from "@nextui-org/react";

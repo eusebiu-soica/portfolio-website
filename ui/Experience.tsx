@@ -1,4 +1,4 @@
-'use client'
+"use client"
 import { Card, CardBody, CardHeader, Chip } from "@nextui-org/react";
 import { motion, useInView } from 'framer-motion';
 import { useRef } from "react";
