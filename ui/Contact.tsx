@@ -12,7 +12,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import globe from "@/assets/globe.json";
 import { Send } from "lucide-react";
-import { sendEmail } from "@/libs/actions";
+import { sendEmail } from "@/libs/utils";
 import ReCAPTCHA from "react-google-recaptcha";
 import dynamic from "next/dynamic";
 

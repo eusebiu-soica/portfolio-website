@@ -120,6 +120,7 @@ export default function Skills() {
                                         draggable={false}
                                         src={skill.icon}
                                         alt={skill.name}
+                                        loading="lazy"
                                         className="w-8 h-8"
                                     />
                                 </div>

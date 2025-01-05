@@ -46,7 +46,7 @@ export default function About() {
                 <motion.h1
                     id="about-title"
                     className="text-3xl lg:text-6xl font-extrabold"
-                    initial={enableAnimations ? { opacity: 0, y: 20 } : { opacity: 0, y: 0 }}
+                    initial={enableAnimations ? { opacity: 0, y: 20 } : { opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     whileInView={enableAnimations ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
                     transition={enableAnimations ? { delay: 0.4, duration: 0.6, type: 'spring', stiffness: 80 } : {delay: 0, duration: 0}}
@@ -87,7 +87,7 @@ export default function About() {
                     src={avatar}
                     width={1000}
                     height={1000}
-                    priority
+                    loading='lazy'
                     draggable={false}
                     className="drop-shadow-xl scale-100 sm:scale-90"
                 />
@@ -98,6 +98,7 @@ export default function About() {
                 lottieRef={lottieRef}
                 className="absolute w-full left-0 right-0 -bottom-28 lg:-bottom-52 -z-10 opacity-10"
                 aria-hidden="true"
+                
             />
         </section>
     );
