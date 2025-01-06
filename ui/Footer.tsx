@@ -34,7 +34,8 @@ export default function Footer() {
                 <motion.div ref={ref}
                     initial="hidden"
                     animate={isInView ? "show" : ""}
-                    variants={animationVariants(0.3)} className="flex justify-end font-normal mt-7 md:mt-0">© {year} by Eusebiu Șoica. All rights reserved.
+                    variants={animationVariants(0.3)} 
+                    className="flex justify-end text-xs sm:text-sm font-light mt-7 md:mt-0">© {year} by Eusebiu Șoica. All rights reserved.
 
                 </motion.div>
                 <div className="flex flex-1 justify-end">
