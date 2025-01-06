@@ -12,9 +12,9 @@ export default function Home() {
     <div className="h-screen ">
       <HomeComponent />
       <About />
-      <Experience />
-      <Skills />
       <Work />
+      <Skills />
+      <Experience />
       <Contact />
       <Footer />
     </div>

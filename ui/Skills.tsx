@@ -25,11 +25,11 @@ import Typescript from "@/assets/typescript.svg";
 import Dx from "@/assets/dx.svg";
 import Monaco from "@/assets/monaco.svg";
 
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import clsx from "clsx";
 import Image from "next/image";
 import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
@@ -72,26 +72,32 @@ export default function Skills() {
 
     const getRandomDelay = () => (isMobile ? 0 : Math.random() * 1);
 
+    const sectionRef = useRef(null);
+    const inView = useInView(sectionRef, { once: true })
+
     return (
         <section
             data-section="3"
-            className="snap-section min-h-max flex flex-col gap-16 relative items-start overflow-hidden px-8 lg:px-28 py-24 bg-background"
+            ref={sectionRef}
+            className="snap-section min-h-max flex flex-col gap-16 relative items-start overflow-hidden px-8 lg:px-28 py-20 bg-background"
         >
             <div className="z-10">
                 <h1 className="text-3xl lg:text-6xl font-extrabold">
                     <span className="text-primary">Tech</span> Arsenal
                 </h1>
             </div>
-            <Lottie
-                animationData={Tech}
-                className="absolute lg:rotate-90 bottom-0 -top-20 right-0 left-0 z-0 opacity-50"
-            />
+            {inView && (
+                <Lottie
+                    animationData={Tech}
+                    className="absolute lg:rotate-90 bottom-0 -top-20 right-0 left-0 z-0 opacity-50"
+                />
+            )}
 
             <div className="flex justify-center md:justify-start flex-wrap gap-7 sm:gap-4">
                 {skills.map((skill) => (
                     <motion.div
                         key={skill.name}
-                        initial={isMobile ?{opacity: 1} : { opacity: 0, y: 0 }}
+                        initial={isMobile ? { opacity: 1 } : { opacity: 0, y: 0 }}
                         whileInView={{
                             opacity: 1,
                             y: 0,

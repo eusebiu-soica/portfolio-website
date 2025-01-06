@@ -35,7 +35,7 @@ export default function Experience() {
     const isInView = useInView(ref, { once: true })
 
     return (
-        <section data-section='2' className="snap-section min-h-screen flex flex-col gap-16 relative items-start px-4 lg:px-28 py-24 bg-background">
+        <section data-section='4' className="snap-section min-h-screen flex flex-col gap-16 relative items-start px-4 lg:px-28 py-24 bg-background">
             <div className="px-5 lg:px-0">
 
                 <h1 className="text-3xl lg:text-6xl font-extrabold">

@@ -14,10 +14,8 @@ export default function ParticlesBackground() {
         }).then(() => {
             setInit(true);
         });
-    }, []);
 
 
-    useEffect(() => {
         const handleResize = () => {
             if (window.innerWidth < 768) {
                 setParticleCount(30);

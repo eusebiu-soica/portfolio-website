@@ -71,8 +71,8 @@ const projects = [
 
     },
     {
-        title: 'Clar Cleaning',
-        description: 'Website presenting Clar cleaning services.',
+        title: 'CLAR Cleaning',
+        description: 'Website presenting CLAR Cleaning services.',
         link: 'https://www.clarcleaning.ro/',
         image: '/clar-cleaning.png',
         git: 'https://github.com/eusebiu-soica/clar-cleaning',
@@ -112,7 +112,7 @@ export default function Projects() {
             return () => window.removeEventListener("resize", handleResize);
         }, []);
     return (
-        <section data-section='4' className="snap-section overflow-x-hidden min-h-screen flex flex-col gap-16 relative w-full items-start px-8 lg:px-28 py-24 bg-background">
+        <section data-section='2' className="snap-section overflow-x-hidden min-h-screen flex flex-col gap-16 relative w-full items-start px-8 lg:px-28 py-24 bg-background">
             <div className="z-10">
                 <h1 className="text-3xl lg:text-6xl font-extrabold">
                     Notable <span className="text-primary">Projects</span>

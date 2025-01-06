@@ -9,7 +9,7 @@ import {
   CardBody,
 } from "@nextui-org/react";
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import globe from "@/assets/globe.json";
 import { Send } from "lucide-react";
 import { sendEmail } from "@/libs/utils";
@@ -27,6 +27,8 @@ export default function Contact() {
   const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
   const formRef = useRef<HTMLFormElement | null>(null);
   const recaptchaRef = useRef<ReCAPTCHA | null>(null);
+  const sectionRef = useRef(null);
+  const inView = useInView(sectionRef, {once: true})
 
   useEffect(() => {
     setIsClient(true);
@@ -147,6 +149,7 @@ export default function Contact() {
   return (
     <section
       data-section="5"
+      ref={sectionRef}
       className="snap-section min-h-screen flex flex-col gap-16 relative overflow-hidden items-start px-4 lg:px-28 py-20 bg-background"
     >
       <div className="px-5 lg:px-0 z-10">
@@ -253,7 +256,7 @@ export default function Contact() {
         </Card>
       </motion.div>
 
-      {isClient && (
+      {inView && (
         <Lottie
           animationData={globe}
           className="absolute right-0 md:-right-1/3 scale-[3] top-60 md:top-0 md:scale-100 opacity-30 z-0"

@@ -49,9 +49,9 @@ export default function Header() {
   const menuItems = [
     { label: "Home", section: 0 },
     { label: "About", section: 1 },
-    { label: "Experience", section: 2 },
+    { label: "Work", section: 2 },
     { label: "Skills", section: 3 },
-    { label: "Work", section: 4 },
+    { label: "Experience", section: 4 },
     { label: "Contact", section: 5 },
   ];
 
