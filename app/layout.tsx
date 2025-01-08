@@ -65,6 +65,8 @@ export default function RootLayout({
         {/* Canonical Link */}
         <link rel="canonical" href="https://www.eusebiusoica.com" />
 
+        <meta name="google-site-verification" content="tYx3JL9OmGKJ_sZ-s6wqyu08MMoaFsUKvge29qrLj0I" />
+
       </head>
       <body
         className={clsx(
